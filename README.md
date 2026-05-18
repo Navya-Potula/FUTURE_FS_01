@@ -1,16 +1,81 @@
-# React + Vite
+# 🚀 FUTURE_FS_01 - Personal Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive personal portfolio website built using **React.js** and **Tailwind CSS**.  
+This project showcases my skills, projects, and contact information with a clean UI and smooth user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 👩‍💻 About the Project
 
-## React Compiler
+This portfolio is developed as part of my internship/task requirement.  
+It represents my frontend development skills and includes real-world features like project showcase and email integration.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🌟 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Fully responsive design (Mobile + Desktop)
+- Modern UI with Tailwind CSS styling
+- Animated hero section using `react-type-animation`
+- About section with personal introduction
+- Skills showcase section
+- Projects section with:
+  - GitHub repository links
+  - Live project links
+- Contact form with EmailJS integration
+- Smooth navigation between sections
+- Sticky navbar with scroll effects
+- Clean and professional layout
+
+---
+
+## 🛠️ Tech Stack
+
+- React.js
+- JavaScript (ES6+)
+- Tailwind CSS
+- EmailJS (for contact form emails)
+- React Type Animation
+
+---
+
+
+---
+
+## 📬 Contact Form Feature
+
+The contact form is connected using **EmailJS**.
+
+It allows users to:
+- Enter Name
+- Enter Email
+- Send Message
+
+Messages are directly delivered to my email using EmailJS service configuration.
+
+---
+
+## 🔗 Live Projects
+
+- Portfolio:   https://future-fs-01-amber.vercel.app/
+- CRM System: https://future-fs-02-dusky.vercel.app/  
+- Business Website: https://future-fs-03-iota-five.vercel.app/
+
+--
+
+## 👩‍💻 Author
+
+**Navya Potula**  
+- GitHub: [Navya-Potula](https://github.com/Navya-Potula)  
+- LinkedIn: https://www.linkedin.com/in/navya-potula-667b3a299/  
+- Email: mailto:navyapotula2@gmail.com  
+
+---
+
+## 📌 Note
+
+This project is continuously improving as part of my learning journey in full-stack development.
+
+---
+
+⭐ If you like this project, feel free to star the repository!
