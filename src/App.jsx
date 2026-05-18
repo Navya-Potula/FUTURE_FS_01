@@ -47,7 +47,7 @@ const handleContactSubmit = (e) => {
     title: "Personal Portfolio Website",
     desc: "Responsive developer portfolio showcasing skills, projects and contact system.",
     github: "https://github.com/Navya-Potula/FUTURE_FS_01",
-    live: "https://your-portfolio-link.com"
+    live: "https://future-fs-01-amber.vercel.app/"
   },
   {
     title: "CRM System",
