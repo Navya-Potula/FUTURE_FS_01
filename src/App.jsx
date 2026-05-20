@@ -1,14 +1,32 @@
 import React from "react";
+import emailjs from "emailjs-com";
+import {
+  FaBars,
+  FaTimes,
+  FaGlobe,
+  FaBriefcase,
+  FaLaptopCode,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import {
+  SiLeetcode,
+  SiHackerrank,
+  SiCodechef,
+} from "react-icons/si";
 import { useState } from "react";
 import profile from "./assets/profile.png";
 import { TypeAnimation } from "react-type-animation";
-import emailjs from "emailjs-com";
 export default function App() {
   const [contactForm, setContactForm] = useState({
   name: "",
   email: "",
   message: "",
 });
+
+const [menuOpen, setMenuOpen] = useState(false);
 const handleContactChange = (e) => {
   setContactForm({
     ...contactForm,
@@ -24,14 +42,14 @@ const handleContactSubmit = (e) => {
   }
 
   emailjs.send(
-    "service_qvtdr99",
-    "template_2o4vtop",
+  import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
     {
       name: contactForm.name,
       email: contactForm.email,
       message: contactForm.message,
     },
-    "4hcgpCxyFELXShx65"
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
   )
   .then(() => alert("Message Sent 🎉"))
   .catch(() => alert("Failed ❌"));
@@ -45,18 +63,21 @@ const handleContactSubmit = (e) => {
  const projects = [
   {
     title: "Personal Portfolio Website",
+    icon: <FaGlobe className="text-6xl text-cyan-400" />,
     desc: "Responsive developer portfolio showcasing skills, projects and contact system.",
     github: "https://github.com/Navya-Potula/FUTURE_FS_01",
     live: "https://future-fs-01-amber.vercel.app/"
   },
   {
     title: "CRM System",
+    icon: <FaBriefcase className="text-6xl text-cyan-400" />,
     desc: "Full-stack CRM system with login, orders, bookings and customer management.",
     github: "https://github.com/Navya-Potula/FUTURE_FS_02",
     live: "https://future-fs-02-dusky.vercel.app/"
   },
   {
     title: "Business Website Project",
+    icon: <FaLaptopCode className="text-6xl text-cyan-400" />,
     desc: "Professional website for real business with booking and customer interaction features.",
     github: "https://github.com/Navya-Potula/FUTURE_FS_03",
     live: " https://future-fs-03-iota-five.vercel.app/"
@@ -78,34 +99,70 @@ const handleContactSubmit = (e) => {
     <div className="bg-[#050816] text-white min-h-screen overflow-x-hidden">
       
       {/* NAVBAR */}
-      <nav className="flex justify-between items-center px-8 py-5 sticky top-0 bg-[#050816]/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <h1 className="text-2xl font-bold text-cyan-400">Navya.dev</h1>
+      <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-5 bg-[#050816]/90 backdrop-blur-md z-50 border-b border-gray-800">
+        <h1 className="text-2xl font-bold text-cyan-400">Navya Potula</h1>
 
-       <div className="hidden md:flex gap-8 text-lg">
-  <a href="#" className="hover:text-cyan-400 hover:scale-110 transition duration-300">
+       {/* Desktop Menu */}
+<div className="hidden md:flex gap-8 text-lg">
+  <a href="#" className="hover:text-cyan-400 transition">
     Home
   </a>
 
-  <a href="#about" className="hover:text-cyan-400 hover:scale-110 transition duration-300">
+  <a href="#about" className="hover:text-cyan-400 transition">
     About
   </a>
 
-  <a href="#skills" className="hover:text-cyan-400 hover:scale-110 transition duration-300">
+  <a href="#skills" className="hover:text-cyan-400 transition">
     Skills
   </a>
 
-  <a href="#projects" className="hover:text-cyan-400 hover:scale-110 transition duration-300">
+  <a href="#projects" className="hover:text-cyan-400 transition">
     Projects
   </a>
 
-  <a href="#contact" className="hover:text-cyan-400 hover:scale-110 transition duration-300">
+  <a href="#contact" className="hover:text-cyan-400 transition">
     Contact
   </a>
 </div>
+
+{/* Mobile Menu Button */}
+<div className="md:hidden text-3xl cursor-pointer text-cyan-400">
+  {menuOpen ? (
+    <FaTimes onClick={() => setMenuOpen(false)} />
+  ) : (
+    <FaBars onClick={() => setMenuOpen(true)} />
+  )}
+</div>
       </nav>
+      {/* MOBILE MENU */}
+{menuOpen && (
+<div className="md:hidden fixed top-[80px] left-0 w-full bg-[#0b1220] flex flex-col items-center gap-6 py-6 text-lg border-b border-gray-800 z-40">
+
+    <a href="#" onClick={() => setMenuOpen(false)}>
+      Home
+    </a>
+
+    <a href="#about" onClick={() => setMenuOpen(false)}>
+      About
+    </a>
+
+    <a href="#skills" onClick={() => setMenuOpen(false)}>
+      Skills
+    </a>
+
+    <a href="#projects" onClick={() => setMenuOpen(false)}>
+      Projects
+    </a>
+
+    <a href="#contact" onClick={() => setMenuOpen(false)}>
+      Contact
+    </a>
+
+  </div>
+)}
 
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-5 relative">
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-5 relative pt-20">
         <div className="absolute w-[400px] h-[400px] bg-cyan-500 blur-[150px] opacity-20 rounded-full top-10"></div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
@@ -203,6 +260,117 @@ const handleContactSubmit = (e) => {
           </div>
         </div>
       </section>
+      {/* JOURNEY */}
+<section className="py-20 px-6 max-w-5xl mx-auto">
+  <h2 className="text-4xl font-bold text-center text-cyan-400 mb-16">
+    My Journey
+  </h2>
+
+  <div className="relative border-l-4 border-cyan-400 pl-10 space-y-14">
+
+    {/* Item 1 */}
+    <div className="relative group">
+      <div className="absolute -left-[52px] top-1 w-6 h-6 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 group-hover:scale-125 transition duration-300"></div>
+
+      <h3 className="text-2xl font-bold">
+        2023 — Started Web Development
+      </h3>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Began learning HTML, CSS and JavaScript fundamentals while exploring responsive web design concepts.
+      </p>
+    </div>
+
+    {/* Item 2 */}
+    <div className="relative group">
+      <div className="absolute -left-[52px] top-1 w-6 h-6 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 group-hover:scale-125 transition duration-300"></div>
+
+      <h3 className="text-2xl font-bold">
+        2024 — Frontend & React Development
+      </h3>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Built interactive frontend applications using React, Tailwind CSS and modern UI development practices.
+      </p>
+    </div>
+
+    {/* Item 3 */}
+    <div className="relative group">
+      <div className="absolute -left-[52px] top-1 w-6 h-6 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 group-hover:scale-125 transition duration-300"></div>
+
+      <h3 className="text-2xl font-bold">
+        2025 — Full Stack Projects
+      </h3>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Developed full stack projects with authentication, database integration and responsive dashboards.
+      </p>
+    </div>
+
+    {/* Item 4 */}
+    <div className="relative group">
+      <div className="absolute -left-[52px] top-1 w-6 h-6 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 group-hover:scale-125 transition duration-300"></div>
+
+      <h3 className="text-2xl font-bold">
+        2026 — Exploring Advanced Development
+      </h3>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Currently improving problem-solving, backend architecture and advanced full stack development skills.
+      </p>
+    </div>
+
+  </div>
+</section>
+{/* EDUCATION */}
+<section className="py-20 px-6 bg-[#0b1220]">
+  <h2 className="text-4xl font-bold text-center text-cyan-400 mb-16">
+    Education
+  </h2>
+
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+
+    {/* BTech */}
+    <div className="bg-[#111827] border border-gray-700 rounded-3xl p-8 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500">
+
+      <h3 className="text-2xl font-bold text-cyan-400">
+        B.Tech
+      </h3>
+
+      <p className="text-xl mt-4 font-semibold">
+Computer Science Engineering — ADITYA COLLEGE OF ENGINEERING AND TECHNOLOGY      </p>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Currently pursuing B.Tech 2nd Year with strong interest in Full Stack Development and modern web technologies.
+      </p>
+
+      <div className="mt-5 inline-block bg-cyan-400/10 text-cyan-400 px-4 py-2 rounded-full text-sm">
+        2025 - 2028
+      </div>
+    </div>
+
+    {/* Diploma */}
+    <div className="bg-[#111827] border border-gray-700 rounded-3xl p-8 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500">
+
+      <h3 className="text-2xl font-bold text-cyan-400">
+        Diploma
+      </h3>
+
+      <p className="text-xl mt-4 font-semibold">
+        Diploma in Computer Science Engineering — ADITYA POLYTECHNIC COLLEGE
+      </p>
+
+      <p className="text-gray-400 mt-3 leading-7">
+        Successfully completed diploma with 98% and built strong technical and programming fundamentals.
+      </p>
+
+      <div className="mt-5 inline-block bg-cyan-400/10 text-cyan-400 px-4 py-2 rounded-full text-sm">
+        Completed
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* SKILLS */}
       <section id="skills" className="py-20 px-6 bg-[#0b1220]">
@@ -221,6 +389,95 @@ const handleContactSubmit = (e) => {
           ))}
         </div>
       </section>
+      <div className="flex justify-center">
+  <a
+    href="certificates.pdf"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <button className="mt-6 bg-cyan-400 text-black px-5 py-3 rounded-full font-semibold hover:scale-105 transition duration-300 flex items-center gap-2">
+
+      View Certificate
+
+      <FaArrowRight className="text-sm" />
+
+    </button>
+  </a>
+</div>
+
+      {/* CODING PROFILES */}
+<section className="py-20 px-6 max-w-6xl mx-auto">
+  <h2 className="text-4xl font-bold text-center text-cyan-400 mb-14">
+    Coding Profiles
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-8">
+
+    {/* LeetCode */}
+    <a
+      href="https://leetcode.com/u/navya_pothula/"
+      target="_blank"
+      rel="noreferrer"
+      className="group"
+    >
+      <div className="bg-[#111827] border border-gray-700 rounded-3xl p-10 text-center hover:border-yellow-400 hover:-translate-y-3 hover:shadow-yellow-500/30 hover:shadow-2xl transition duration-500">
+        
+        <SiLeetcode className="text-6xl mx-auto text-yellow-400 group-hover:scale-110 transition duration-300" />
+
+        <h3 className="text-2xl font-bold mt-6">
+          LeetCode
+        </h3>
+
+        <p className="text-gray-400 mt-4 leading-7">
+          Solving DSA and problem-solving challenges regularly to improve logical thinking and coding skills.
+        </p>
+      </div>
+    </a>
+
+    {/* HackerRank */}
+    <a
+      href="https://www.hackerrank.com/profile/navyapotula2"
+      target="_blank"
+      rel="noreferrer"
+      className="group"
+    >
+      <div className="bg-[#111827] border border-gray-700 rounded-3xl p-10 text-center hover:border-green-400 hover:-translate-y-3 hover:shadow-green-500/30 hover:shadow-2xl transition duration-500">
+
+        <SiHackerrank className="text-6xl mx-auto text-green-400 group-hover:scale-110 transition duration-300" />
+
+        <h3 className="text-2xl font-bold mt-6">
+          HackerRank
+        </h3>
+
+        <p className="text-gray-400 mt-4 leading-7">
+          Practicing coding challenges and strengthening programming fundamentals across multiple domains.
+        </p>
+      </div>
+    </a>
+
+    {/* CodeChef */}
+    <a
+      href="https://www.codechef.com/users/navya_potula_2"
+      target="_blank"
+      rel="noreferrer"
+      className="group"
+    >
+      <div className="bg-[#111827] border border-gray-700 rounded-3xl p-10 text-center hover:border-orange-400 hover:-translate-y-3 hover:shadow-orange-500/30 hover:shadow-2xl transition duration-500">
+
+        <SiCodechef className="text-6xl mx-auto text-orange-400 group-hover:scale-110 transition duration-300" />
+
+        <h3 className="text-2xl font-bold mt-6">
+          CodeChef
+        </h3>
+
+        <p className="text-gray-400 mt-4 leading-7">
+          Participating in coding contests and improving competitive programming and problem-solving abilities.
+        </p>
+      </div>
+    </a>
+
+  </div>
+</section>
 
       {/* PROJECTS */}
       <section id="projects" className="py-20 px-6 max-w-7xl mx-auto">
@@ -234,7 +491,9 @@ const handleContactSubmit = (e) => {
               key={index}
               className="bg-[#111827] rounded-3xl overflow-hidden border border-gray-700 hover:border-cyan-400 hover:-translate-y-3 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500 shadow-xl"
             >
-              <div className="h-52 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
+             <div className="h-52 flex items-center justify-center bg-gradient-to-r from-cyan-500/20 to-blue-600/20">
+  {project.icon}
+</div>
 
               <div className="p-8">
                 <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
@@ -272,32 +531,76 @@ const handleContactSubmit = (e) => {
           <p className="text-gray-400 text-lg mb-10">
             Let's work together and create something amazing.
           </p>
-          <div className="flex justify-center gap-6 mb-10 text-lg flex-wrap">
-  <a
-  href="mailto:navyapotula2@gmail.com"
-  className="flex items-center gap-2 hover:text-cyan-400 transition"
->
-  📧 Email Me
-</a>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
 
+  {/* Email Card */}
+  <a
+    href="#contact-form"
+    className="group"
+  >
+    <div className="bg-[#111827] border border-gray-700 rounded-3xl p-8 text-center hover:border-cyan-400 hover:-translate-y-2 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500">
+
+      <FaEnvelope className="text-5xl text-cyan-400 mx-auto group-hover:scale-110 transition duration-300" />
+
+      <h3 className="text-2xl font-bold mt-5">
+        Email
+      </h3>
+
+      <p className="text-gray-400 mt-3 break-all">
+        navyapotula2@gmail.com
+      </p>
+    </div>
+  </a>
+
+  {/* GitHub Card */}
   <a
     href="https://github.com/Navya-Potula"
     target="_blank"
-    className="hover:text-cyan-400 transition"
+    rel="noreferrer"
+    className="group"
   >
-    GitHub
+    <div className="bg-[#111827] border border-gray-700 rounded-3xl p-8 text-center hover:border-cyan-400 hover:-translate-y-2 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500">
+
+      <FaGithub className="text-5xl text-cyan-400 mx-auto group-hover:scale-110 transition duration-300" />
+
+      <h3 className="text-2xl font-bold mt-5">
+        GitHub
+      </h3>
+
+      <p className="text-gray-400 mt-3">
+        View My Projects
+      </p>
+    </div>
   </a>
 
+  {/* LinkedIn Card */}
   <a
     href="https://www.linkedin.com/in/navya-potula-667b3a299/"
     target="_blank"
-    className="hover:text-cyan-400 transition"
+    rel="noreferrer"
+    className="group"
   >
-    LinkedIn
+    <div className="bg-[#111827] border border-gray-700 rounded-3xl p-8 text-center hover:border-cyan-400 hover:-translate-y-2 hover:shadow-cyan-500/30 hover:shadow-2xl transition duration-500">
+
+      <FaLinkedin className="text-5xl text-cyan-400 mx-auto group-hover:scale-110 transition duration-300" />
+
+      <h3 className="text-2xl font-bold mt-5">
+        LinkedIn
+      </h3>
+
+      <p className="text-gray-400 mt-3">
+        Connect With Me
+      </p>
+    </div>
   </a>
+
 </div>
 
-          <form className="grid gap-6" onSubmit={handleContactSubmit}>
+          <form
+  id="contact-form"
+  className="grid gap-6"
+  onSubmit={handleContactSubmit}
+>
             <input
   type="text"
   name="name"
@@ -305,6 +608,7 @@ const handleContactSubmit = (e) => {
   value={contactForm.name}
   onChange={handleContactChange}
   placeholder="Your Name"
+  className="bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400 transition duration-300"
 />
 
             <input 
@@ -314,6 +618,7 @@ const handleContactSubmit = (e) => {
   value={contactForm.email}
   onChange={handleContactChange}
   placeholder="Your Email"
+  className="bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400 transition duration-300"
 />
 <textarea
   rows="6"
@@ -322,6 +627,7 @@ const handleContactSubmit = (e) => {
   value={contactForm.message}
   onChange={handleContactChange}
   placeholder="Your Message"
+  className="bg-[#111827] border border-gray-700 rounded-xl px-5 py-4 outline-none focus:border-cyan-400 transition duration-300 resize-none"
 />
 
             <button
