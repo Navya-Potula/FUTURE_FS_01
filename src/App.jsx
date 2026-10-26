@@ -85,6 +85,13 @@ export default function App() {
       github: "https://github.com/Navya-Potula/SalesVision",
       live: "",
     },
+        {
+      title: "Airfare Reservation System",
+      icon: <FaGlobe className="text-6xl text-cyan-400" />,
+      desc: "Responsive flight booking application featuring flight search, seat selection, user authentication, booking management, email notifications, and PDF ticket generation using HTML, CSS, and JavaScript.",
+      github: "https://github.com/Navya-Potula/airfare-reservation-system",
+      live: "https://navya-potula.github.io/airfare-reservation-system/",
+    },
     {
       title: "Personal Portfolio Website",
       icon: <FaGlobe className="text-6xl text-cyan-400" />,
@@ -385,8 +392,7 @@ const skills = [
             </p>
 
             <p className="text-gray-400 mt-3 leading-7">
-              Currently pursuing B.Tech 2nd Year with strong interest in Full Stack Development and modern web technologies.
-            </p>
+Currently pursuing B.Tech 3rd Year with a strong interest in Full Stack Development, Data Analytics, and modern web technologies. Passionate about building responsive web applications, analyzing data, and developing innovative solutions using emerging technologies.            </p>
 
             <div className="mt-5 inline-block bg-cyan-400/10 text-cyan-400 px-4 py-2 rounded-full text-sm">
               2025 - 2028
